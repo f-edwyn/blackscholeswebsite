@@ -1,0 +1,61 @@
+{% load static %}
+<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+  <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="sidebarMenuLabel">Black Scholes Model</h5>
+    </div>
+    <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="https://www.linkedin.com/in/edwyn-flores/" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align: middle; margin-right: 10px;">
+            Edwyn Flores
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2">
+            Asset Price
+          </a>
+          <div class="nav-link d-flex align-items-center gap-2">
+            <div class="input-group-prepend">$</div>
+            <input type="number" class="form-control" value="100.00" step="0.01" min="0" size="10000">
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2">
+            Strike Price
+          </a>
+          <div class="nav-link d-flex align-items-center gap-2">
+            <div class="input-group-prepend">$</div>
+            <input type="number" class="form-control" value="100.00" step="0.01" min="0">
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2">
+            Time to Maturity (Years)
+          </a>
+          <div class="nav-link d-flex align-items-center gap-2">
+            <input type="number" class="form-control" value="1.00" step="0.01" min="0">
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2">
+            Volatility
+          </a>
+          <div class="nav-link d-flex align-items-center gap-2">
+            <input type="number" class="form-control" value="0.15" step="0.01" min="0">
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2">
+            Risk-Free Interest Rate
+          </a>
+          <div class="nav-link d-flex align-items-center gap-2">
+            <input type="text" class="form-control" value="0.05" step="0.01" min="0">
+            <div class="input-group-append">%</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
