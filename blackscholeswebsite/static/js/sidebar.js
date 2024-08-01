@@ -1,20 +1,26 @@
-document.getElementById("assetPrice").addEventListener("change", validateDollarValue)
-document.getElementById("strikePrice").addEventListener("change", validateDollarValue)
+document.getElementById("assetPrice").addEventListener("change", validateValue)
+document.getElementById("strikePrice").addEventListener("change", validateValue)
+document.getElementById("time").addEventListener("change", validateValue)
+document.getElementById("volatility").addEventListener("change", validateValue)
+document.getElementById("rfiRate").addEventListener("change", validateValue)
 
-function validateDollarValue() {
-    var dollarValue = this.value
-    defaultValue = 0.00
+function validateValue() {
+    var inputValue = this.value
+    var defaultValue = 0.00
 
-    if (dollarValue.length > 0 && Number(dollarValue)) {
+    if (inputValue.length > 0 && Number(inputValue)) {
         // If negative number, default to 0, change to re-prompt user.
-        if (dollarValue < defaultValue) {
+        if (inputValue < defaultValue) {
             this.value = defaultValue
+            updateModelValue(this.id, this.value)
             return
         }
         const numOfDecimals = 2
-        this.value = parseFloat(dollarValue).toFixed(numOfDecimals)
+        this.value = parseFloat(inputValue).toFixed(numOfDecimals)
+        updateModelValue(this.id, this.value)
         return
     }
     // If has letters, default to 0, change to re-prompt user.
     this.value = defaultValue
+    updateModelValue(this.id, this.value)
 }
