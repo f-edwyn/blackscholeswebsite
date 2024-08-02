@@ -1,8 +1,14 @@
-document.getElementById("assetPrice").addEventListener("change", validateValue)
-document.getElementById("strikePrice").addEventListener("change", validateValue)
-document.getElementById("time").addEventListener("change", validateValue)
-document.getElementById("volatility").addEventListener("change", validateValue)
-document.getElementById("rfiRate").addEventListener("change", validateValue)
+assetPrice = document.getElementById("assetPrice")
+strikePrice = document.getElementById("strikePrice")
+time = document.getElementById("time")
+volatility = document.getElementById("volatility")
+rfiRate = document.getElementById("rfiRate")
+
+listOfVariables = [assetPrice, strikePrice, time, volatility, rfiRate]
+
+listOfVariables.forEach(function(variable) {
+    variable.addEventListener("change", validateValue)
+});
 
 function validateValue() {
     var inputValue = this.value
