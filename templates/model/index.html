@@ -1,25 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Black-Scholes Pricing Model</h1>
-<table class="table">
+<head>
+    <h1>Black-Scholes Pricing Model</h1>
+</head>
+<body>
+    <table class="table">
     <thead class="thead-dark">
-      <tr>
-        <th scope="col">Asset Price</th>
-        <th scope="col">Strike Price</th>
-        <th scope="col">Time (Years)</th>
-        <th scope="col">Volatility</th>
-        <th scope="col">Interest Rate (Risk-Free)</th>
-      </tr>
+        <tr>
+            <th scope="col">Asset Price</th>
+            <th scope="col">Strike Price</th>
+            <th scope="col">Time (Years)</th>
+            <th scope="col">Volatility</th>
+            <th scope="col">Interest Rate (Risk-Free)</th>
+        </tr>
     </thead>
     <tbody>
-      <tr>
-        <td id="modelAssetPrice">100.00</td>
-        <td id="modelStrikePrice">100.00</td>
-        <td id="modelTime">1.00</td>
-        <td id="modelVolatility">0.15</td>
-        <td id="modelRfiRate">0.05</td>
-    </tr>
+        <tr>
+            <td id="modelAssetPrice">100.00</td>
+            <td id="modelStrikePrice">100.00</td>
+            <td id="modelTime">1.00</td>
+            <td id="modelVolatility">0.15</td>
+            <td id="modelRfiRate">0.05</td>
+        </tr>
     </tbody>
-  </table>
+    </table>
+</body>
 {% endblock content %}

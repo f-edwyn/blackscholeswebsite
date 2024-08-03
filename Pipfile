@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 python-dotenv = "*"
+django = "*"
+numpy = "*"
+scipy = "*"
 
 [dev-packages]
 
