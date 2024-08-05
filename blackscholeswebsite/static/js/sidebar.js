@@ -1,32 +1,86 @@
-assetPrice = document.getElementById("assetPrice")
-strikePrice = document.getElementById("strikePrice")
-time = document.getElementById("time")
-volatility = document.getElementById("volatility")
-rfiRate = document.getElementById("rfiRate")
+const assetPrice = document.getElementById("assetPrice");
+const assetPriceFeedBackArea = document.querySelector(".assetPriceFeedback");
 
-listOfVariables = [assetPrice, strikePrice, time, volatility, rfiRate]
+const strikePrice = document.getElementById("strikePrice");
+const strikePriceFeedBackArea = document.querySelector(".strikePriceFeedback");
 
-listOfVariables.forEach(function(variable) {
-    variable.addEventListener("change", validateValue)
-});
 
-function validateValue() {
-    var inputValue = this.value
-    var defaultValue = 0.00
+const time = document.getElementById("time");
+const timeFeedbackArea = document.querySelector(".timeFeedback");
+
+
+const volatility = document.getElementById("volatility");
+const volatilityFeedBackArea = document.querySelector(".volatilityFeedback");
+
+
+const rfiRate = document.getElementById("rfiRate");
+const rfiRateFeedBackArea = document.querySelector(".rfiRateFeedback");
+
+const variables = [{
+    "value": assetPrice,
+    "feedBackArea": assetPriceFeedBackArea
+},{
+    "value": strikePrice,
+    "feedBackArea": strikePriceFeedBackArea
+},{
+    "value": time,
+    "feedBackArea": timeFeedbackArea
+},{
+    "value": volatility,
+    "feedBackArea": volatilityFeedBackArea
+},{
+    "value": rfiRate,
+    "feedBackArea": rfiRateFeedBackArea
+}]
+
+variables.forEach(function(variable) {
+    variable.value.addEventListener("change", function(){
+        validateValue(variable.value, variable.feedBackArea)
+    })
+})
+
+// FIXME: Bug where you can input any number of decimals and 0s.
+function validateValue(value, feedBackArea) {
+    const defaultValue = 0.00;
+    var inputValue = value.value;
+
+    value.classList.remove("is-invalid");
+    feedBackArea.classList.remove("is-invalid");
+    feedBackArea.style.display = "none";
 
     if (inputValue.length > 0 && Number(inputValue)) {
-        // If negative number, default to 0, change to re-prompt user.
         if (inputValue < defaultValue) {
-            this.value = defaultValue
-            updateModelValue(this.id, this.value)
-            return
+            fetch("/model/validate-value", {
+                method: "POST",
+                body: JSON.stringify({ value: inputValue })
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.value_error) {
+                    value.classList.add("is-invalid");
+                    feedBackArea.style.display = "block";
+                    feedBackArea.innerHTML = `<p>${data.value_error}</p>`;
+                }
+            });
+            return;
         }
-        const numOfDecimals = 2
-        this.value = parseFloat(inputValue).toFixed(numOfDecimals)
-        updateModelValue(this.id, this.value)
-        return
+
+        const numOfDecimals = 2;
+        value.value = parseFloat(inputValue).toFixed(numOfDecimals)
+        updateModelValue(value.id, value.value);
+        return;
     }
-    // If has letters, default to 0, change to re-prompt user.
-    this.value = defaultValue
-    updateModelValue(this.id, this.value)
+
+    fetch("/model/validate-value", {
+        method: "POST",
+        body: JSON.stringify({ value: inputValue })
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.value_error) {
+            value.classList.add("is-invalid");
+            feedBackArea.style.display = "block";
+            feedBackArea.innerHTML = `<p>${data.value_error}</p>`;
+        }
+    });
 }
