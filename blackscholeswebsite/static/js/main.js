@@ -20,5 +20,9 @@ function calculateModelValuation() {
         if (data.calculation_error) {
             console.log(data.calculation_error)
         }
+        console.log(data)
+        console.log(data.call_value)
+        console.log(data.put_value)
+        console.log(typeof(data.call_value))
     });
 }

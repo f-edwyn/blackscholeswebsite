@@ -28,10 +28,10 @@ class ModelValuation(View):
             time = data['time']
             volatility = data['volatility']
             rfi_rate = data['rfiRate']
-            price = blackScholes(asset_price, strike_price, time, volatility, rfi_rate, 'd')
-            return JsonResponse({'valuation': price})
+            call_value, put_value = blackScholes(asset_price, strike_price, time, volatility, rfi_rate)
+            return JsonResponse({'call_value': call_value, 'put_value': put_value})
         except Exception as e:
-            return JsonResponse({'calculation_error': f'An error occured during the calculation: {e}'})
+            return JsonResponse({'calculation_error': e})
 
 def index(request):
     return render(request, 'model/index.html')
