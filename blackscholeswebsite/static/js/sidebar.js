@@ -1,20 +1,20 @@
-const assetPrice = document.getElementById("assetPrice");
-const assetPriceFeedBackArea = document.querySelector(".assetPriceFeedback");
+const assetPrice = document.getElementById("assetPrice")
+const assetPriceFeedBackArea = document.querySelector(".assetPriceFeedback")
 
-const strikePrice = document.getElementById("strikePrice");
-const strikePriceFeedBackArea = document.querySelector(".strikePriceFeedback");
-
-
-const time = document.getElementById("time");
-const timeFeedbackArea = document.querySelector(".timeFeedback");
+const strikePrice = document.getElementById("strikePrice")
+const strikePriceFeedBackArea = document.querySelector(".strikePriceFeedback")
 
 
-const volatility = document.getElementById("volatility");
-const volatilityFeedBackArea = document.querySelector(".volatilityFeedback");
+const time = document.getElementById("time")
+const timeFeedbackArea = document.querySelector(".timeFeedback")
 
 
-const rfiRate = document.getElementById("rfiRate");
-const rfiRateFeedBackArea = document.querySelector(".rfiRateFeedback");
+const volatility = document.getElementById("volatility")
+const volatilityFeedBackArea = document.querySelector(".volatilityFeedback")
+
+
+const rfiRate = document.getElementById("rfiRate")
+const rfiRateFeedBackArea = document.querySelector(".rfiRateFeedback")
 
 const variables = [{
     "value": assetPrice,
@@ -41,12 +41,12 @@ variables.forEach(function(variable) {
 
 // FIXME: Bug where you can input any number of decimals and 0s.
 function validateValue(value, feedBackArea) {
-    const defaultValue = 0.00;
-    var inputValue = value.value;
+    const defaultValue = 0.00
+    var inputValue = value.value
 
-    value.classList.remove("is-invalid");
-    feedBackArea.classList.remove("is-invalid");
-    feedBackArea.style.display = "none";
+    value.classList.remove("is-invalid")
+    feedBackArea.classList.remove("is-invalid")
+    feedBackArea.style.display = "none"
 
     if (inputValue.length > 0 && Number(inputValue)) {
         if (inputValue < defaultValue) {
@@ -57,18 +57,19 @@ function validateValue(value, feedBackArea) {
             .then((res) => res.json())
             .then((data) => {
                 if (data.value_error) {
-                    value.classList.add("is-invalid");
-                    feedBackArea.style.display = "block";
-                    feedBackArea.innerHTML = `<p>${data.value_error}</p>`;
+                    value.classList.add("is-invalid")
+                    feedBackArea.style.display = "block"
+                    feedBackArea.innerHTML = `<p>${data.value_error}</p>`
                 }
-            });
-            return;
+            })
+            return
         }
 
-        const numOfDecimals = 2;
+        const numOfDecimals = 2
         value.value = parseFloat(inputValue).toFixed(numOfDecimals)
-        updateModelValue(value.id, value.value);
-        return;
+        updateModelValue(value.id, value.value)
+        calculateModelValuation()
+        return
     }
 
     fetch("/model/validate-value", {
@@ -78,9 +79,9 @@ function validateValue(value, feedBackArea) {
     .then((res) => res.json())
     .then((data) => {
         if (data.value_error) {
-            value.classList.add("is-invalid");
-            feedBackArea.style.display = "block";
-            feedBackArea.innerHTML = `<p>${data.value_error}</p>`;
+            value.classList.add("is-invalid")
+            feedBackArea.style.display = "block"
+            feedBackArea.innerHTML = `<p>${data.value_error}</p>`
         }
-    });
+    })
 }
