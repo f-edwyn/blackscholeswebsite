@@ -24,8 +24,8 @@ function calculateModelValuation() {
             console.log(data.calculation_error)
         }
         callValueFeedBackArea.style.display = "block"
-        callValueFeedBackArea.innerHTML = `<h5>Call Value</h5><p>$${data.call_value}</p>`
+        callValueFeedBackArea.innerHTML = `<h4>Call Value</h4><h5>$${data.call_value}</h5>`
         putValueFeedBackArea.style.display = "block"
-        putValueFeedBackArea.innerHTML = `<h5>Put Value</h5><p>$${data.put_value}</p>`
+        putValueFeedBackArea.innerHTML = `<h4>Put Value</h4><h5>$${data.put_value}</h5>`
     })
 }
