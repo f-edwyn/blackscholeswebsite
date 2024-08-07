@@ -27,5 +27,5 @@ function calculateModelValuation() {
         callValueFeedBackArea.innerHTML = `<h5>Call Value</h5><p>$${data.call_value}</p>`
         putValueFeedBackArea.style.display = "block"
         putValueFeedBackArea.innerHTML = `<h5>Put Value</h5><p>$${data.put_value}</p>`
-    });
+    })
 }

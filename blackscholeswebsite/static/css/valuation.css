@@ -9,27 +9,27 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
-    color: #ffffff; /* Default text color */
-    flex: 1; /* Make each box grow equally */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-    margin: 50px 10px; /* Add horizontal margin between the boxes */
+    color: #ffffff;
+    flex: 1;
+    box-sizing: border-box;
+    margin: 50px 10px;
 }
 
 .callValueFeedback {
-    background-color: #d4edda; /* Light green background */
-    color: #155724; /* Dark green text */
+    background-color: #d4edda;
+    color: #155724;
 }
 
 .putValueFeedback {
-    background-color: #f8d7da; /* Light red background */
-    color: #721c24; /* Dark red text */
+    background-color: #f8d7da;
+    color: #721c24;
 }
 
 .pricing-container {
     display: flex;
-    flex-direction: row; /* Align boxes horizontally */
-    justify-content: space-between; /* Distribute space between boxes */
-    width: 100%; /* Full width */
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
     margin-top: 20px;
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    box-sizing: border-box;
 }

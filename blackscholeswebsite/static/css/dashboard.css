@@ -1,16 +1,14 @@
 /* sidebar.css */
 
 .sidebar {
-  /* Ensure the sidebar occupies the full height of the viewport */
   height: 100vh;
-  overflow-y: auto; /* Allow scrolling if content overflows */
+  overflow-y: auto;
 }
 
 .nav-item {
   display: flex;
   flex-direction: column;
-  /* align-items: center; Center items horizontally */
-  margin-bottom: 5px; /* Space between items */
+  margin-bottom: 5px;
 }
 
 .nav-link {
@@ -20,13 +18,13 @@
 }
 
 .invalid-feedback {
-  display: block; /* Ensure feedback is block-level */
-  width: calc(100% - 10px); /* Adjust width to account for padding */
-  padding-left: 5px; /* Add space to the left of the text */
-  text-align: left; /* Align text to the left */
-  color: red; /* Optional: Style text color */
-  margin-top: 5px; /* Space above feedback */
-  font-size: 0.875rem; /* Adjust font size if needed */
-  display: none; /* Hide feedback by default, show with JavaScript or conditionally */
+  display: block;
+  width: calc(100% - 10px);
+  padding-left: 5px;
+  text-align: left;
+  color: red;
+  margin-top: 5px;
+  font-size: 0.875rem;
+  display: none;
   margin-left: 20px;
 }
