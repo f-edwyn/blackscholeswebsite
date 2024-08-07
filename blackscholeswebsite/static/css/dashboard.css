@@ -1,45 +1,32 @@
-.bi {
-    display: inline-block;
-    width: 1rem;
-    height: 1rem;
-  }
-  
-  /*
-   * Sidebar
-   */
-  
-  @media (min-width: 768px) {
-    .sidebar .offcanvas-lg {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 48px;
-    }
-  }
-  
-  .sidebar .nav-link {
-    font-size: .875rem;
-    font-weight: 500;
-  }
-  
-  .sidebar .nav-link.active {
-    color: #2470dc;
-  }
-  
-  .sidebar-heading {
-    font-size: .75rem;
-  }
-  
-  /*
-   * Navbar
-   */
-  
-  .navbar-brand {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    background-color: rgba(0, 0, 0, .25);
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
-  }
-  
-  .navbar .form-control {
-    padding: .75rem 1rem;
-  }
+/* sidebar.css */
+
+.sidebar {
+  /* Ensure the sidebar occupies the full height of the viewport */
+  height: 100vh;
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; Center items horizontally */
+  margin-bottom: 5px; /* Space between items */
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.invalid-feedback {
+  display: block; /* Ensure feedback is block-level */
+  width: calc(100% - 10px); /* Adjust width to account for padding */
+  padding-left: 5px; /* Add space to the left of the text */
+  text-align: left; /* Align text to the left */
+  color: red; /* Optional: Style text color */
+  margin-top: 5px; /* Space above feedback */
+  font-size: 0.875rem; /* Adjust font size if needed */
+  display: none; /* Hide feedback by default, show with JavaScript or conditionally */
+  margin-left: 20px;
+}

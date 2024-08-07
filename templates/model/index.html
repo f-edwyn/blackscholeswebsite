@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
-<head>
-    <h1>Black-Scholes Pricing Model</h1>
-</head>
-<body>
-    <table class="table">
+<link href="{% static 'css/valuation.css' %}" rel="stylesheet">
+
+<h1>Black-Scholes Pricing Model</h1>
+
+<table class="table">
     <thead class="thead-dark">
         <tr>
             <th scope="col">Asset Price</th>
@@ -24,6 +26,11 @@
             <td id="modelRfiRate">0.05</td>
         </tr>
     </tbody>
-    </table>
-</body>
+</table>
+
+<div class="pricing-container">
+    <div class="box callValueFeedback">Call Value</div>
+    <div class="box putValueFeedback">Put Value</div>
+</div>
+
 {% endblock content %}
