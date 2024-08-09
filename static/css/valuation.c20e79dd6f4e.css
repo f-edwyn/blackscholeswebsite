@@ -1,0 +1,35 @@
+/* valuation.css */
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    flex: 1;
+    box-sizing: border-box;
+    margin: 50px 10px;
+}
+
+.callValueFeedback {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.putValueFeedback {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.pricing-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    box-sizing: border-box;
+}

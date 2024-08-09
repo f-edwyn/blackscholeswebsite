@@ -1,0 +1,30 @@
+/* sidebar.css */
+
+.sidebar {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.invalid-feedback {
+  display: block;
+  width: calc(100% - 10px);
+  padding-left: 5px;
+  text-align: left;
+  color: red;
+  margin-top: 5px;
+  font-size: 0.875rem;
+  display: none;
+  margin-left: 20px;
+}
