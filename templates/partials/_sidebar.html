@@ -66,6 +66,46 @@
         </div>
         <div class="rfiRateFeedback invalid-feedback" style="display:none"></div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-2">
+          Min Spot Price
+        </a>
+        <div class="nav-link d-flex align-items-center gap-2">
+          <div class="input-group-prepend">$</div>
+          <input type="text" id="minSpotPrice" class="form-control" value="80.00">
+        </div>
+        <div class="minSpotPriceFeedback invalid-feedback" style="display:none"></div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-2">
+          Max Spot Price
+        </a>
+        <div class="nav-link d-flex align-items-center gap-2">
+          <div class="input-group-prepend">$</div>
+          <input type="text" id="maxSpotPrice" class="form-control" value="120.00">
+        </div>
+        <div class="maxSpotPriceFeedback invalid-feedback" style="display:none"></div>
+      </li>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link d-flex align-items-center gap-2">
+        Min Time to Maturity (Years)
+      </a>
+      <div class="nav-link d-flex align-items-center gap-2">
+        <input type="text" id=heatMapMinTime class="form-control" value="1.00">
+      </div>
+      <div class="minTimeFeedback invalid-feedback" style="display:none"></div>
+    </li>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link d-flex align-items-center gap-2">
+      Max Time to Maturity (Years)
+    </a>
+    <div class="nav-link d-flex align-items-center gap-2">
+      <input type="text" id=heatMapMaxTime class="form-control" value="1.00">
+    </div>
+    <div class="maxTimeFeedback invalid-feedback" style="display:none"></div>
+  </li>
     </ul>
   </div>
   <script src="{% static 'js/sidebar.js' %}"></script>

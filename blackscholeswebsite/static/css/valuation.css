@@ -1,10 +1,12 @@
-/* valuation.css */
+.pricing-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
 
 .box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -12,7 +14,7 @@
     color: #ffffff;
     flex: 1;
     box-sizing: border-box;
-    margin: 50px 10px;
+    margin: 0 10px;
 }
 
 .callValueFeedback {
@@ -25,11 +27,22 @@
     color: #721c24;
 }
 
-.pricing-container {
+.heat-map {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    width: 100%;
-    margin-top: 20px;
-    box-sizing: border-box;
+    align-items: center;
+    gap: 20px;
+}
+
+.callHeatMapFeedback,
+.putHeatMapFeedback {
+    flex: 1;
+    max-width: 50%; 
+}
+
+.callHeatMapFeedback img,
+.putHeatMapFeedback img {
+    width: 100%; 
+    height: auto; 
+    display: block;
 }

@@ -16,32 +16,59 @@ const volatilityFeedBackArea = document.querySelector(".volatilityFeedback")
 const rfiRate = document.getElementById("rfiRate")
 const rfiRateFeedBackArea = document.querySelector(".rfiRateFeedback")
 
+const minSpotPrice = document.getElementById("minSpotPrice")
+const minSpotPriceFeedBackArea = document.querySelector(".minSpotPriceFeedback")
+
+const maxSpotPrice = document.getElementById("maxSpotPrice")
+const maxSpotPriceFeedBackArea = document.querySelector(".maxSpotPriceFeedback")
+
+const heatMapMinTime = document.getElementById("heatMapMinTime")
+const minTimeFeedBackArea = document.querySelector(".minTimeFeedback")
+
+const heatMapMaxTime = document.getElementById("heatMapMaxTime")
+const maxTimeFeedBackArea = document.querySelector(".maxTimeFeedback")
+
 const variables = [{
     "value": assetPrice,
-    "feedBackArea": assetPriceFeedBackArea
+    "feedBackArea": assetPriceFeedBackArea,
+    "updateValue": true
 },{
     "value": strikePrice,
-    "feedBackArea": strikePriceFeedBackArea
+    "feedBackArea": strikePriceFeedBackArea,
+    "updateValue": true
 },{
     "value": time,
-    "feedBackArea": timeFeedbackArea
+    "feedBackArea": timeFeedbackArea,
+    "updateValue": true
 },{
     "value": volatility,
-    "feedBackArea": volatilityFeedBackArea
+    "feedBackArea": volatilityFeedBackArea,
+    "updateValue": true
 },{
     "value": rfiRate,
-    "feedBackArea": rfiRateFeedBackArea
+    "feedBackArea": rfiRateFeedBackArea,
+    "updateValue": true
+},{
+    "value": minSpotPrice,
+    "feedBackArea": minSpotPriceFeedBackArea,
+},{
+    "value": maxSpotPrice,
+    "feedBackArea": maxSpotPriceFeedBackArea
+},{
+    "value": heatMapMinTime,
+    "feedBackArea": minTimeFeedBackArea
+},{
+    "value": heatMapMaxTime,
+    "feedBackArea": maxTimeFeedBackArea
 }]
 
 variables.forEach(function(variable) {
     variable.value.addEventListener("change", function(){
-        validateValue(variable.value, variable.feedBackArea)
+        validateValue(variable.value, variable.feedBackArea, variable.updateValue)
     })
 })
 
-// FIXME: Bug where you can input any number of decimals and 0s.
-function validateValue(value, feedBackArea) {
-    const defaultValue = 0.00
+function validateValue(value, feedBackArea, updateValue=false) {
     var inputValue = value.value
 
     value.classList.remove("is-invalid")
@@ -49,7 +76,7 @@ function validateValue(value, feedBackArea) {
     feedBackArea.style.display = "none"
 
     if (inputValue.length > 0 && Number(inputValue)) {
-        if (inputValue < defaultValue) {
+        if (inputValue < 0) {
             fetch("/model/validate-value", {
                 method: "POST",
                 body: JSON.stringify({ value: inputValue })
@@ -67,8 +94,24 @@ function validateValue(value, feedBackArea) {
 
         const numOfDecimals = 2
         value.value = parseFloat(inputValue).toFixed(numOfDecimals)
-        updateModelValue(value.id, value.value)
+        if (updateValue) {
+            updateModelValue(value.id, value.value)
+        }
         calculateModelValuation()
+
+        isPriceValid = validHeatParameters(minSpotPrice, maxSpotPrice, minSpotPriceFeedBackArea, maxSpotPriceFeedBackArea, "Spot Prices")
+        if (isPriceValid){
+            removeInvalidParameters(minSpotPrice, maxSpotPrice, minSpotPriceFeedBackArea, maxSpotPriceFeedBackArea)
+        }
+        
+        isTimeValid = validHeatParameters(heatMapMinTime, heatMapMaxTime, minTimeFeedBackArea, maxTimeFeedBackArea, "Min/Max time values")
+        if (isTimeValid){
+            removeInvalidParameters(heatMapMinTime, heatMapMaxTime, minTimeFeedBackArea, maxTimeFeedBackArea)
+        }
+
+        if (isPriceValid && isTimeValid){
+            createHeatMap()
+        }
         return
     }
 
