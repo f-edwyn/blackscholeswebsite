@@ -114,7 +114,7 @@ function validateValue(value, feedBackArea, updateValue=false) {
             createHeatMap()
             setTimeout(() => {
                 hideLoader()
-            }, 500)
+            }, 1000)
         }
         return
     }
