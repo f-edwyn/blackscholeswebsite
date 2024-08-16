@@ -64,30 +64,35 @@ function removeInvalidParameters(element1, element2, feedBackArea1, feedBackArea
     }
 }
 
-function createHeatMap() {
-    fetch("/model/create-heatmap", {
-        method: "POST",
-        body: JSON.stringify({
-            strikePrice: strikePrice.value,
-            rfiRate: rfiRate.value,
-            volatility: volatility.value,
-            minSpotPrice: minSpotPrice.value,
-            maxSpotPrice: maxSpotPrice.value,
-            heatMapMinTime: heatMapMinTime.value,
-            heatMapMaxTime: heatMapMaxTime.value
-        })
-    })
-    .then((res) => res.json())
-    .then((data) => {
+async function createHeatMap() {
+    try {
+        const response = await fetch("/model/create-heatmap", {
+            method: "POST",
+            body: JSON.stringify({
+                strikePrice: strikePrice.value,
+                rfiRate: rfiRate.value,
+                volatility: volatility.value,
+                minSpotPrice: minSpotPrice.value,
+                maxSpotPrice: maxSpotPrice.value,
+                heatMapMinTime: heatMapMinTime.value,
+                heatMapMaxTime: heatMapMaxTime.value
+            })
+        });
+
+        const data = await response.json();
+
         if (data.heatmap_error) {
             console.log(data.heatmap_error)
         }
-        const callBase64String = data.call_uri;
+        const callBase64String = data.call_uri
         const callImgSrc = 'data:image/png;base64,' + callBase64String
-        callHeatMapFeedBackArea.innerHTML = `<img src="${callImgSrc}" alt="Call Option Heatmap" style="width:100%; max-width:800px;">`;
+        callHeatMapFeedBackArea.innerHTML = `<img src="${callImgSrc}" alt="Call Option Heatmap" style="width:100%; max-width:800px;">`
     
-        const putBase64String = data.put_uri;
-        const putImgSrc = 'data:image/png;base64,' + putBase64String;
-        putHeatMapFeedBackArea.innerHTML = `<img src="${putImgSrc}" alt="Put Option Heatmap" style="width:100%; max-width:800px;">`;
-    })
+        const putBase64String = data.put_uri
+        const putImgSrc = 'data:image/png;base64,' + putBase64String
+        putHeatMapFeedBackArea.innerHTML = `<img src="${putImgSrc}" alt="Put Option Heatmap" style="width:100%; max-width:800px;">`
+
+    } catch (error) {
+        console.error('Error creating heatmap:', error)
+    }
 }
