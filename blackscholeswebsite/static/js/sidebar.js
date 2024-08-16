@@ -109,8 +109,12 @@ function validateValue(value, feedBackArea, updateValue=false) {
             removeInvalidParameters(heatMapMinTime, heatMapMaxTime, minTimeFeedBackArea, maxTimeFeedBackArea)
         }
 
-        if (isPriceValid && isTimeValid){
-            createHeatMap()
+        if (isPriceValid && isTimeValid) {
+            showLoader()
+            setTimeout(() => {
+                createHeatMap()
+                hideLoader()
+            }, 300)
         }
         return
     }
@@ -127,4 +131,12 @@ function validateValue(value, feedBackArea, updateValue=false) {
             feedBackArea.innerHTML = `<p>${data.value_error}</p>`
         }
     })
+}
+
+function showLoader() {
+    document.getElementById('loader').style.display = 'block'
+}
+
+function hideLoader() {
+    document.getElementById('loader').style.display = 'none'
 }
