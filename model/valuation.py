@@ -20,11 +20,9 @@ def blackScholes(S, K, T, sigma, r):
 
         # Put and call value will equate to 0 for small values.
         if isinstance(call_value, np.floating):
-            print(call_value)
             call_value = "%.2f" % round(call_value, 2)
         if isinstance(put_value, np.floating):
             put_value = "%.2f" % round(put_value, 2)
-        print(call_value, put_value)
         return call_value, put_value
     except:
         raise Exception("Error occurred during calculation.")
