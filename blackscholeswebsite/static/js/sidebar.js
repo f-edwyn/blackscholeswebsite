@@ -111,10 +111,10 @@ function validateValue(value, feedBackArea, updateValue=false) {
 
         if (isPriceValid && isTimeValid) {
             showLoader()
+            createHeatMap()
             setTimeout(() => {
-                createHeatMap()
                 hideLoader()
-            }, 300)
+            }, 500)
         }
         return
     }
