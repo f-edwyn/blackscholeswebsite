@@ -68,6 +68,31 @@ variables.forEach(function(variable) {
     })
 })
 
+window.onload = function() {
+    let allValid = true;
+
+    variables.forEach(function(variable) {
+        if (variable.value.value.length > 0) {
+            validateValue(variable.value, variable.feedBackArea, variable.updateValue);
+        }
+    });
+
+    const isPriceValid = validHeatParameters(minSpotPrice, maxSpotPrice, minSpotPriceFeedBackArea, maxSpotPriceFeedBackArea, "Spot Prices");
+    const isTimeValid = validHeatParameters(heatMapMinTime, heatMapMaxTime, minTimeFeedBackArea, maxTimeFeedBackArea, "Min/Max time values");
+
+    if (!isPriceValid || !isTimeValid) {
+        allValid = false;
+    }
+
+    if (allValid) {
+        showLoader();
+        createHeatMap();
+        setTimeout(() => {
+            hideLoader();
+        }, 1000);
+    }
+};
+
 function validateValue(value, feedBackArea, updateValue=false) {
     var inputValue = value.value
 
