@@ -3,12 +3,8 @@
 {% load static %}
 
 {% block content %}
-<link href="{% static 'css/valuation.css' %}" rel="stylesheet">
-<style>
-    h1 {
-        margin-top: 20px;
-    }
-    </style>
+<link href="{% static 'css/valuation.css' %}?v=1.1" rel="stylesheet">
+
 <h1>Black-Scholes Pricing Model</h1>
 
 <table class="table">
@@ -37,9 +33,43 @@
     <div class="box putValueFeedback">Put Value</div>
 </div>
 
-<div class="heat-map">
-    <div class="callHeatMap callHeatMapFeedback"></div>
-    <div class="putHeatMap putHeatMapFeedback"></div>
+<div class="heat-map two-d-heatmaps">
+    <div class="callHeatMap callHeatMapFeedback">
+        <h4>Call Heatmap (2D)</h4>
+        <img id="callImg" src="" alt="Call heatmap" />
+    </div>
+    <div class="putHeatMap putHeatMapFeedback">
+        <h4>Put Heatmap (2D)</h4>
+        <img id="putImg" src="" alt="Put heatmap" />
+    </div>
 </div>
 
+<div style="margin-top:20px;">
+    <h3>Interactive 3D Surface</h3>
+    <div id="heatmap-loader">Rendering... please wait</div>
+    <div class="plot-row">
+        <div>
+            <div id="plotly-plot"></div>
+            <div id="plotly-spacer" style="height:100px"></div>
+        </div>
+        <div class="plot-controls">
+            <div>
+                <label><input type="radio" name="yaxis" value="time" checked> Y = Time</label>
+                <label><input type="radio" name="yaxis" value="rfr"> Y = Risk-free Rate</label>
+            </div>
+            <div id="rfrStartContainer" style="margin-top:12px; display: none;">
+                <label>RFR Start (optional) <input type="number" id="rfrStart" step="0.001" placeholder="default is 0"></label>
+            </div>
+            <div style="margin-top:12px;">
+            </div>
+            <p id="plot-help-text" style="font-size:12px;color:#666;min-height:2.5em;"></p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.plot.ly/plotly-2.24.0.min.js"></script>
+<script>
+    const HEATMAP_DATA_URL = '{% url "heatmap_data" %}';
+    const CREATE_HEATMAP_URL = '{% url "create_heatmap" %}';
+</script>
 {% endblock content %}
